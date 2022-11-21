@@ -37,7 +37,7 @@ const routes = [
     component: RegisterUser,
   },
   {
-    path: "/404",
+    path: "/:PthMatch(.*)*",
     name: "NotFound",
     component: NotFound,
   },

@@ -80,7 +80,7 @@ onAuthStateChanged(getAuth(), function (user) {
 
 const handleSignOut = () => {
   signOut(getAuth());
-  router.push("/products");
+  router.push("/");
 };
 </script>
 
