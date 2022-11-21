@@ -11,10 +11,10 @@ class ProductClass{
         this.amount = 1;
     }
     total(){
-        return parseFloat((this.price * this.amount).toFixed(2));
+        return this.price * this.amount;
     }
     totalWtax(){
-        return parseFloat((this.total() + (this.total()*this.tax)).toFixed(2));
+        return this.total() + (this.total()*this.tax);
     }
     get amount(){
         return parseInt(this.amount);

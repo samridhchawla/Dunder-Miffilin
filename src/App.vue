@@ -1,18 +1,33 @@
 <template>
   <div>
-    <site-nav></site-nav>
-    <router-view />
+    <main-menu></main-menu>
+    <div class="container-fluid">
+          <router-view @mapmap='addedItem' :sendFinall='item'></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import SiteNav from "./components/SiteNav.vue";
+import MainMenu from './components/MainMenu.vue'
+
 export default {
-  name: "App",
+  name: 'App',
   components: {
-    SiteNav,
+    MainMenu
   },
-};
+  data(){
+    return{
+      item:"",
+    }
+  },
+  methods:{
+    addedItem(val){
+      this.item=val;
+    },
+  }
+}
 </script>
 
-<style></style>
+<style>
+
+</style>

@@ -1,9 +1,11 @@
-import http from "../http-common.js";
+import http from '../http-common.js'
 
-class JsonService {
-  getJson() {
-    return http.get("data/products.json");
-  }
+class JsonService{
+    getJson(){
+        return http.get('data/productList.json');
+    }
 }
+
+
 
 export default new JsonService();
