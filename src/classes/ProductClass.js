@@ -1,13 +1,17 @@
 class ProductClass{
-    pId;
-    pName;
+    id;
+    product_name;
     price;
+    url;
+    category;
     amount;
     tax = 0.1;
-    constructor(pId,pName,price){
-        this.pId = pId;
-        this.pName = pName;
+    constructor(id,product_name,price,url,category){
+        this.id = id;
+        this.product_name = product_name;
         this.price = price;
+        this.url = url;
+        this.category=category;
         this.amount = 1;
     }
     total(){
@@ -24,10 +28,12 @@ class ProductClass{
     }
     toObject(){
         return {
-            pId:this.pId,
-            pName:this.pName,
+            id:this.id,
+            product_name:this.product_name,
             price:this.price,
-            amount:this.amount
+            amount:this.amount,
+            url: this.url,
+            category:this.category
         }
     }
 }

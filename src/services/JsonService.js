@@ -2,7 +2,7 @@ import http from '../http-common.js'
 
 class JsonService{
     getJson(){
-        return http.get('data/productList.json');
+        return http.get('data/MOCK_DATA.json');
     }
 }
 

@@ -19,9 +19,9 @@
                 </thead>
                 <tbody class="table-group-divider">
                     <tr v-for="(shop,idx) in sendFinall" :key="idx" class="table-primary">
-                        <td>{{shop[1].pId}}</td>
-                        <td><img src="../img/pic-01.jpg"></td>
-                        <td>{{shop[1].pName}}</td>
+                        <td>{{shop[1].id}}</td>
+                        <td> <img :src="'data/img/'+shop[1].url"></td>
+                        <td>{{shop[1].product_name}}</td>
                         <td>{{shop[1].amount}}</td>
                         <td>${{shop[1].price}}</td>
                         <td>${{(shop[1].price*0.1)+shop[1].price}}</td>
@@ -71,6 +71,7 @@ export default {
 <style scoped>
  img{
         width: 15vh;
+        height: 25vh;
     }
     section{
         display: flex;
