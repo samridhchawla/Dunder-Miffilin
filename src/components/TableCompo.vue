@@ -47,7 +47,6 @@ export default {
         return{
             sum:"",
             rating:"",
-            rating1:''
         }
     },
     components:{
@@ -56,7 +55,7 @@ export default {
     methods:{
         del(idx){
             this.shopping.delete(idx);
-            // this.calTotal()
+            this.calTotal()
         },
         buy(idx){
             // This emit will send a index of added item
@@ -70,7 +69,17 @@ export default {
         setRating1: function(rating){
             this.rating1= rating;
             console.log(this.rating1)
-        }
+        },
+        calTotal(){
+            let total = 0;
+            this.shopping.forEach(function(vall){
+                total= total +(vall.price+(vall.price*0.1))
+            })
+            this.sum=Math.floor(total);
+            console.log(this.sum)
+            return this.$emit('total',this.sum);
+           
+        }, 
     },
 }
 </script>

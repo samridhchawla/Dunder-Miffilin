@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-6" id="addtable">
                     <h2>Added List</h2>
-                    <table-compo :shopping="shoppingList" ></table-compo>
+                    <table-compo :shopping="shoppingList" @total="total"></table-compo>
                     <br>
                     <hr>
                     <h2>Total Price: ${{sum}}</h2>
@@ -106,6 +106,13 @@ export default {
             })
             return this.sum=Math.floor(total) ;
         }, 
+        // del(idx){
+        //     this.shoppingList.delete(idx);
+        //     this.calTotal()
+        // },
+        total(total){
+            this.sum=total;
+        }
     },
     mounted(){
         this.loadProducts();
