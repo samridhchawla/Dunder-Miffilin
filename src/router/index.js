@@ -4,6 +4,7 @@ import ProductPage from "../components/ProductPage.vue";
 import SignIn from "../components/SignIn.vue";
 import ShoppingPage from "../components/ShoppingPage.vue";
 import NotFound from "../components/NotFound.vue";
+import WishList from "../components/WishList.vue";
 // import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const routes = [
@@ -29,6 +30,12 @@ const routes = [
     meta: {
       requiresAuth: true,
     },
+  },
+  {
+    path: "/wishlist",
+    name: "wish-list",
+    component: WishList,
+
   },
 
   {

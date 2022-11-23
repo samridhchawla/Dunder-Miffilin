@@ -11,7 +11,7 @@
                 <h3>Price: ${{ item.price }}</h3>
                 <h3>Amount<input type="number" v-model="itemAmount"></h3>
                 <div id="buttonsDiv">
-                <h3><button @click="wishListFn">Wish-List</button></h3>
+                <h3><button @click="wishlistFn">Wish-List</button></h3>
                 <h3><button @click="cartAdd">Add to cart</button></h3>
                 <h3 v-if="cartFlag">Added to cart</h3>
                 </div>
@@ -44,6 +44,7 @@ export default {
         },
         wishlistFn(){
             this.$emit('wishlist',this.idx)
+            alert("work")
 
         }
     }

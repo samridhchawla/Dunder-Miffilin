@@ -49,7 +49,7 @@
           ></router-link>
         </li>
         <li class="nav-item">
-          <router-link active-class="active" class="nav-link" to="/cart"
+          <router-link active-class="active" class="nav-link" to="/wishlist"
             >Wishlist</router-link
           >
         </li>

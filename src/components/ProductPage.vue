@@ -80,7 +80,7 @@ export default {
     return {
       products: new Array(),
       shoppingList: new Map(),
-      wishList: new Map(),
+      wishList: [],
       sum: "",
       item: "",
       idx: "",
@@ -143,14 +143,21 @@ export default {
       let product = this.products[idx];
       this.item = product;
       this.idx = idx;
+      document.documentElement.scrollTop = 0;
+      
     },
+
     wishlist(idx){
       let product = this.products[idx];
       let wishProduct = null;
-      if (this.wishList.has(product.id)) {
+      this.wishList.forEach((item)=>{
+        if(item.id == product.id){
+          wishProduct = item;
+        }
+      })
+      if (wishProduct) {
         return false;
       } else {
-        console.log(product);
         wishProduct = new ProductClass(
           product.id,
           product.product_name,
@@ -159,13 +166,15 @@ export default {
           product.category
         );
       }
-      this.wishList.set(product.id, wishProduct);
+      this.wishList.push(wishProduct);
+      sessionStorage.setItem('wishlist',JSON.stringify(this.wishList))
     },
     closeFn(){
       this.item = ''
       this.idx = '';
 
     },
+
     calTotal() {
       let total = 0;
       this.shoppingList.forEach(function (vall) {
@@ -185,6 +194,10 @@ export default {
     this.loadProducts();
     if (this.productCart != "") {
       this.shoppingList = this.productCart;
+    }
+    if(sessionStorage.getItem('wishlist')){
+      this.wishList = JSON.parse(sessionStorage.getItem('wishlist'))
+      
     }
   },
 };
