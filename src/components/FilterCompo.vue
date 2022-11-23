@@ -256,8 +256,8 @@ fetch("https://s3-us-west-2.amazonaws.com/s.cdpn.io/450744/mock-logos.svg")
   });
 </script>
 
-<style lang="scss" scoped>
-.content {
+<style scoped lang="scss">
+ .content {
   position: relative;
   font-family: "Nunito", sans-serif;
   font-weight: 300;
@@ -614,5 +614,6 @@ fetch("https://s3-us-west-2.amazonaws.com/s.cdpn.io/450744/mock-logos.svg")
       opacity: 1;
     }
   }
+
 }
 </style>

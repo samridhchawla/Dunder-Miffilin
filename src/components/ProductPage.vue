@@ -1,13 +1,15 @@
 <template>
+  <h1></h1>
+  <table-compo @buy2="buybuy" :products="products"></table-compo>
   <section>
-   
-    <filter-compo></filter-compo>
-    <article>
+    <!-- <filter-compo></filter-compo> -->
+
+    <!-- <article>
       <div class="row justify-content-start align-items-start g-2">
         <div class="col">
           <div class="row justify-content-start align-items-start g-2">
-            <div class="col-6">
-              <!-- <div>
+            <div class="col-6"> -->
+    <!-- <div>
               <nav>
                 <ul>
                   <li class="var_nav">
@@ -31,14 +33,15 @@
                 </ul>
               </nav>
             </div> -->
-              <table-compo @buy2="buybuy" :products="products"></table-compo>
-            </div>
-            <div class="col-6" id="addtable">
+
+    <!-- </div> -->
+    <!-- <div class="col-6" id="addtable">
               <h2>Added List</h2>
               <table-compo
                 :shopping="shoppingList"
                 @total="total"
-              ></table-compo>
+              >
+            </table-compo>
               <br />
               <hr />
               <h2>Total Price: ${{ sum }}</h2>
@@ -50,25 +53,24 @@
               <div v-on:click="sendMap()" id="sendMap">
                 <a>Add to Shopping Cart</a>
               </div>
-            </div>
-          </div>
+            </div> -->
+    <!-- </div>
         </div>
       </div>
-    </article>
+    </article> -->
   </section>
 </template>
 <script>
 import TableCompo from "./TableCompo.vue";
 import JsonService from "../services/JsonService.js";
 import ProductClass from "../classes/ProductClass.js";
-import FilterCompo from "../components/FilterCompo.vue"
+// import FilterCompo from "../components/FilterCompo.vue"
 
 export default {
   name: "ProductPage",
   components: {
     TableCompo,
-    FilterCompo
-    
+    // FilterCompo
   },
   props: ["productCart"],
   data() {
@@ -147,156 +149,9 @@ export default {
   margin: 0;
   padding: 0;
 }
-
-#addtable {
+section {
+  display: flex;
   padding-top: 5%;
+  justify-content: space-around;
 }
-#sendMap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-  padding: 1em 2em;
-  width: 300px;
-  color: #333;
-  font-size: 18px;
-  font-weight: 700;
-  background-image: linear-gradient(170deg, #659de6, #5abab8);
-  border-radius: 50vh;
-  transition: 0.3s;
-}
-#sendMap:hover {
-  cursor: pointer;
-  transform: translateY(3px);
-  text-decoration: none;
-  box-shadow: 0 2px 0 #aaaaaa;
-  background-image: linear-gradient(-170deg, #659de6, #5abab8);
-}
-a {
-  text-decoration: none;
-}
-nav {
-  padding-top: 3%;
-  padding-bottom: 3%;
-}
-ul {
-  display: flex;
-  column-gap: 2vh;
-  margin: 0px;
-  padding: 0px;
-  list-style-type: none;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-.var_nav {
-  position: relative;
-  background: #ccc;
-  width: 300px;
-  height: 70px;
-  margin-bottom: 5px;
-}
-.link_bg {
-  width: 70px;
-  height: 70px;
-  position: absolute;
-  background: #e01b6a;
-  color: #fff;
-  z-index: 2;
-}
-.link_bg i {
-  position: relative;
-}
-.link_title {
-  position: absolute;
-  width: 100%;
-  z-index: 3;
-  color: #fff;
-}
-.link_title:hover .icon {
-  -webkit-transform: rotate(360deg);
-  -moz-transform: rotate(360deg);
-  -o-transform: rotate(360deg);
-  -ms-transform: rotate(360deg);
-  transform: rotate(360deg);
-}
-.var_nav:hover .link_bg {
-  width: 100%;
-  background: #e01b6a;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-.var_nav:hover a {
-  font-weight: bold;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  -ms-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-}
-.icon {
-  position: relative;
-  width: 70px;
-  height: 70px;
-  text-align: center;
-  color: #fff;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  -ms-transition: all 0.5s ease-in-out;
-  float: left;
-  transition: all 0.5s ease-in-out;
-  float: left;
-}
-.icon i {
-  top: 22px;
-  position: relative;
-}
-nav a {
-  display: block;
-  position: absolute;
-  float: left;
-  font-family: arial;
-  color: #fff;
-  text-decoration: none;
-  width: 100%;
-  height: 70px;
-  text-align: center;
-}
-span {
-  margin-top: 25px;
-  display: block;
-}
-#total {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-  padding: 1em 2em;
-  width: 300px;
-  color: #333;
-  /* color: whitesmoke; */
-  font-size: 18px;
-  font-weight: 700;
-  background-image: linear-gradient(170deg, #659de6, #5abab8);
-  border-radius: 50vh;
-  transition: 0.3s;
-}
-#total:hover {
-  cursor: pointer;
-  transform: translateY(3px);
-  text-decoration: none;
-  box-shadow: 0 2px 0 #aaaaaa;
-  background-image: linear-gradient(-170deg, #659de6, #5abab8);
-}
-#total a {
-  text-decoration: none;
-}
-
-
-
-
-
 </style>

@@ -1,48 +1,21 @@
 <template>
-  <div class="parent">
-    <div>
-      <section>
-        <article v-for="(product, idx) in products" :key="idx">
-          <img :src="'data/img/' + product.url" />
-          <aside>
-            <h3>[ID]: {{ product.id }}</h3>
-            <h3>[Category]: {{ product.category }}</h3>
-            <h3>[Name]: {{ product.product_name }}</h3>
-            <h3>[Price]: ${{ product.price }}</h3>
-            <vue3-star-rating
-              v-bind:star-size="20"
-              @update:rating="setRating"
-            ></vue3-star-rating>
-            <button type="button" @click="buy(idx)" id="add">+</button>
-          </aside>
-        </article>
-      </section>
-      <section>
-        <div class="shopping">
-          <!-- This section will display list of added items -->
-          <article v-for="(shop, idx) in shopping" :key="idx" class="added">
-
-            <img :src="'data/img/' + shop[1].url" />
-            <aside>
-              <h3>[ID]: {{ shop[1].id }}</h3>
-              <h3>[Category]: {{ shop[1].category }}</h3>
-              <h3>[Name]: {{ shop[1].product_name }}</h3>
-              <h3>[Amount]: {{ shop[1].amount }}</h3>
-              <h3>[SubTotal]: ${{ shop[1].price }}</h3>
-              <h3>[Total]: ${{ shop[1].price + shop[1].price * 0.1 }}</h3>
-              <vue3-star-rating
-                v-bind:star-size="20"
-                v-model="rating"
-              ></vue3-star-rating>
-              <div id="dele" @click="del(shop[0])">
-                <a>Delete</a>
-              </div>
-            </aside>
-          </article>
-        </div>
-      </section>
-    </div>
-  </div>
+<section>
+    <article v-for="(product, idx) in products" :key="idx">
+      <button type="button" @click="buy(idx)" id="add">+</button>
+     
+      <img :src="'data/img/' + product.url" />
+      <aside>
+        <h3>Category: {{ product.category }}</h3>
+        <h3>Name: {{ product.product_name }}</h3>
+        <h3>Price: ${{ product.price }}</h3>
+        <vue3-star-rating
+          v-bind:star-size="20"
+          @update:rating="setRating"
+        ></vue3-star-rating>
+      
+      </aside>
+    </article>
+</section>
 </template>
 <script>
 import Vue3StarRating from "vue-star-rating";
@@ -88,10 +61,14 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 img {
   width: 100%;
   height: 80%;
+   border-top-right-radius: 30px;
+   border-top-left-radius: 30px;
+
 }
 .shopping,
 section {
@@ -105,21 +82,25 @@ section {
   border-right: 2px dotted black;
 }
 article {
-  width: 23%;
-  height: 75vh;
+  width: 17%;
+  height: 35vh;
   background: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
   display: flex;
   flex-direction: column;
   row-gap: 2vh;
+
+  border-radius: 30px;
+ 
 }
 aside {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 80%;
+  height: 40%;
   padding-bottom: 4%;
   padding-left: 5%;
   color: black;
+  
 }
 .added {
   width: 23%;
@@ -164,6 +145,9 @@ h3 {
   box-sizing: border-box;
   color: #ffffff;
   cursor: pointer;
+  margin-top: 0.7%;
+  margin-left: 13%;
+  position: absolute;
   font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji",
     NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji",
     EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
@@ -180,5 +164,6 @@ h3 {
   width: fit-content;
   word-break: break-word;
   border: 0;
+
 }
 </style>
