@@ -14,20 +14,21 @@
       </h2>
       <div class="main-text multi-column">
         <p>
-          Sometimes, Internet users land themselves in an uncommon situation
-          where an app or website can be used for both work and personal
-          situations. Well, a young front-end designer was spending up to 13
-          hours on the site,The Office for work and her hobby, which
-          unfortunately, is also coding.
+          Prison Mike is Michael's prison character when he finds out that
+          Martin is a convict. In his Prison Mike persona, Michael paints an
+          awful, and somewhat fanciful, picture of prison life.
         </p>
         <p>
-          The designer, whose work includes a<em>To-Do Terrarium</em>,
-          clarified, "Well, I didn't<em>have</em>to use it for work but it was
-          already part of my workflow. It just made sense as it was more
-          efficient." The biggest issue, she said, is that she would hop on The
-          Office for work, but would get distracted by pens made by others in
-          the community for unexpectedly long periods of time, which then causes
-          her to spend even more time on the site.
+          Prison Mike is a horribly stereotyped character of Michael's that
+          tries to prove that prison is horrible. Michael says that he found
+          information for <em>Prison Mike </em>in movies. The rest of the office listens
+          to Prison Mike in shock. Martin says that his experience in jail was
+          not anything like Prison Mike's.
+        </p>
+        <p>
+          <em>Prison Mike </em> wears a purple bandana over his head, speaking in a
+          caricature of New York English and uses stereotypical prison slang. He
+          squints one eye, suggesting that it was injured in a prison fight.
         </p>
         <p>
           "I mean, that's terrible right?" she asked.The Office, which brands
@@ -37,11 +38,9 @@
       </div>
       <a class="terrarium"
         ><figure>
-          <img
-            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-terrarium.jpg"
-          />
+          <img src="../assets/Saint-Prison-Mike-Poster.jpg" />
           <figcaption>
-            A to-do list that grows succulents when you've completed a task
+            Prision Mike is the living proof of how you can acheive greatness
           </figcaption>
         </figure></a
       ><a class="item-with-image plan span--2 long--2" href="#"
@@ -161,18 +160,17 @@
         <a class="codepen-item pie"
           ><img
             class="pie__image"
-            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-pie.jpg"
+            src="../assets/il_1588xN.1939131417_sh1h.avif"
           />
           <div class="pie__subtitle">Food</div>
           <div class="pie__content">
-            <h4>Pies for everyone!</h4>
+            <h4>It is time for Dundies!</h4>
             <p>
-              No man is left behind. There's infinite pie with this one div and
-              a repeating background.
+              No man is left behind. There's infinite prizes with this Dundies and it is going to much harder and crazier this season.
             </p>
           </div></a
         ><a class="sidebar-item captcha">
-          <h5>Frustrated designer runs amok with Captcha ideas</h5>
+          <h5>Frustrated Office worker runs amok with Captcha ideas</h5>
           <p>
             From Tic Tac Toe to solving meme-based questions, this is a
             different take on how web captchas should be. "I have not
@@ -573,7 +571,7 @@ aside {
     margin: 0;
     border: 0;
     max-height: 15rem;
-    object-fit: cover;
+    object-fit: contain;
   }
   &__subtitle {
     background: #999;
@@ -631,7 +629,6 @@ aside {
       background: var(--black);
     }
   }
-
 }
 
 .magazine {

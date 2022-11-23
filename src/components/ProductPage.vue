@@ -1,15 +1,26 @@
 <template>
-  <h1></h1>
-  <table-compo @buy2="buybuy" :products="products"></table-compo>
-  <section>
-    <!-- <filter-compo></filter-compo> -->
+  <section class="textanime">
+    <p>What's missing in your office today?</p>
+  </section>
+  <checkout-compo
+    :idx="idx"
+    :item="item"
+    v-if="item"
+    @close="closeFn"
+    @add="cartAdd"
+    @wishlist="wishlist"
+    class="modal-content"
+  ></checkout-compo>
+  <table-compo @buy2="buybuy" :products="products" @checkout="checkout"></table-compo>
+  <!-- <filter-compo></filter-compo> -->
 
-    <!-- <article>
+  <!-- <section> -->
+  <!-- <article>
       <div class="row justify-content-start align-items-start g-2">
         <div class="col">
           <div class="row justify-content-start align-items-start g-2">
             <div class="col-6"> -->
-    <!-- <div>
+  <!-- <div>
               <nav>
                 <ul>
                   <li class="var_nav">
@@ -34,8 +45,8 @@
               </nav>
             </div> -->
 
-    <!-- </div> -->
-    <!-- <div class="col-6" id="addtable">
+  <!-- </div> -->
+  <!-- <div class="col-6" id="addtable">
               <h2>Added List</h2>
               <table-compo
                 :shopping="shoppingList"
@@ -54,30 +65,35 @@
                 <a>Add to Shopping Cart</a>
               </div>
             </div> -->
-    <!-- </div>
+  <!-- </div>
         </div>
       </div>
     </article> -->
-  </section>
+  <!-- </section> -->
 </template>
 <script>
 import TableCompo from "./TableCompo.vue";
 import JsonService from "../services/JsonService.js";
 import ProductClass from "../classes/ProductClass.js";
 // import FilterCompo from "../components/FilterCompo.vue"
+import CheckoutCompo from "./CheckoutCompo.vue"
 
 export default {
   name: "ProductPage",
   components: {
     TableCompo,
     // FilterCompo
+    CheckoutCompo,
   },
   props: ["productCart"],
   data() {
     return {
       products: new Array(),
       shoppingList: new Map(),
+      wishList: new Map(),
       sum: "",
+      item: "",
+      idx: "",
     };
   },
   methods: {
@@ -110,16 +126,53 @@ export default {
         );
       }
       this.shoppingList.set(product.id, selectedProduct);
+      this.sendMap();
     },
     sendMap() {
       // This emit will send a this.shoppingList to parent(App.vue) to display at ShoppingPageVue
       this.$emit("mapmap", this.shoppingList);
-      this.alertMsg();
     },
-    alertMsg() {
-      // You can know how many items have you added
-      let mapSize = this.shoppingList.size;
-      alert(mapSize + " " + "Items was added to Shopping Cart");
+    cartAdd(idx, amount) {
+      let product = this.products[idx];
+      // product is selected object
+      let selectedProduct = null;
+      console.log(product);
+      selectedProduct = new ProductClass(
+        product.id,
+        product.product_name,
+        Math.floor(product.price),
+        product.url,
+        product.category
+      );
+      selectedProduct.amount = amount;
+      this.shoppingList.set(product.id, selectedProduct);
+      this.sendMap();
+    },
+    checkout(idx) {
+      let product = this.products[idx];
+      this.item = product;
+      this.idx = idx;
+    },
+    wishlist(idx) {
+      let product = this.products[idx];
+      let wishProduct = null;
+      if (this.wishList.has(product.id)) {
+        return false;
+      } else {
+        console.log(product);
+        wishProduct = new ProductClass(
+          product.id,
+          product.product_name,
+          Math.floor(product.price),
+          product.url,
+          product.category
+        );
+      }
+      this.wishList.set(product.id, wishProduct);
+    },
+    closeFn() {
+      this.item = "";
+      this.idx = "";
     },
     calTotal() {
       let total = 0;
@@ -145,13 +198,54 @@ export default {
 };
 </script>
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Special+Elite&display=swap");
 * {
   margin: 0;
   padding: 0;
 }
 section {
   display: flex;
-  padding-top: 5%;
+  padding: 2% 5% 2% 5%;
+
   justify-content: space-around;
 }
+
+.textanime {
+  margin: 1%;
+}
+/* DEMO-SPECIFIC STYLES */
+.textanime p {
+  color: black;
+  overflow: hidden;
+  border-right: 0.15em solid black;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
+  animation: typing 3.5s steps(30, end), blink-caret 0.5s step-end infinite;
+  font-family: "Special Elite", cursive;
+  font-size: 26px;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 50%;
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: black;
+  }
+}
+
+
 </style>
