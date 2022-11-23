@@ -1,6 +1,6 @@
 <template>
   <div class="table-responsive">
-    <h1>Shopping Cart</h1>
+    <h1>WishList</h1>
     <table
       class="table table-striped table-hover table-borderless table-primary align-middle"
     >
@@ -9,64 +9,48 @@
           <th>ID</th>
           <th>Item Image</th>
           <th>Name</th>
-          <th>Amount</th>
-          <th>Subtotal</th>
-          <th>Total(Tax10%)</th>
+          <th>Price</th>
           <th>Delete</th>
         </tr>
       </thead>
       <tbody class="table-group-divider">
-        <tr v-for="(shop, idx) in sendFinall" :key="idx" class="table-primary">
-          <td>{{ shop[1].id }}</td>
-          <td><img :src="'data/img/' + shop[1].url" /></td>
-          <td>{{ shop[1].product_name }}</td>
-          <td>{{ shop[1].amount }}</td>
-          <td>${{ shop[1].price }}</td>
-          <td>${{ shop[1].price * 0.1 + shop[1].price }}</td>
-          <td id="dele" @click="dele(shop[0])">
+        <tr v-for="(item, idx) in wishList" :key="idx" class="table-primary">
+          <td>{{ item.id }}</td>
+          <td><img :src="'data/img/' + item.url" /></td>
+          <td>{{ item.product_name }}</td>
+          <td>${{ item.price }}</td>
+          <td id="dele" @click="dele(idx)">
             <a>X</a>
           </td>
         </tr>
       </tbody>
     </table>
-
-    <br />
-    <hr />
-    <br />
-    <h2>Total Price: ${{ sum2 }}</h2>
-    <br />
-    <div id="total" v-on:click="calTotal2()">
-      <a>Calculate Total Price</a>
-    </div>
   </div>
 </template>
 <script>
 export default {
-  name: "ShoppingPage",
-  props: ["sendFinall","logFlag"],
-  // sendFinall is map of added products
+    name: "WishList",
+  props: ["logFlag"],
   data() {
     return {
-      sum2: "",
+      wishList: [],
     };
   },
   methods: {
     dele(idx) {
-      // sendFinall is map, so you can delete item by using delete.
-      // If you deleted item, then total price will change, so i use this.calTotal2() to calculate again
-      this.sendFinall.delete(idx);
-      this.calTotal2();
-    },
-    calTotal2() {
-      let total2 = 0;
-      this.sendFinall.forEach(function (vall) {
-        total2 = total2 + (vall.price + vall.price * 0.1);
-      });
-      return (this.sum2 = Math.floor(total2));
+      this.wishList.splice(idx, 1);
+      this.wishList = sessionStorage.setItem(
+        "wishlist",
+        JSON.stringify(this.wishList)
+      );
+      this.wishList = JSON.parse(sessionStorage.getItem("wishlist"));
     },
   },
   mounted() {
-    if (this.logFlag != true) {
+    if (sessionStorage.getItem("wishlist")) {
+      this.wishList = JSON.parse(sessionStorage.getItem("wishlist"));
+    }
+    if (this.logFlag == false)  {
       this.$router.push("/sign-in");
     }
   },

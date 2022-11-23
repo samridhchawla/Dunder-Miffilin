@@ -11,7 +11,11 @@
     @wishlist="wishlist"
     class="modal-content"
   ></checkout-compo>
-  <table-compo @buy2="buybuy" :products="products" @checkout="checkout"></table-compo>
+  <table-compo
+    @buy2="buybuy"
+    :products="products"
+    @checkout="checkout"
+  ></table-compo>
   <!-- <filter-compo></filter-compo> -->
 
   <!-- <section> -->
@@ -76,7 +80,7 @@ import TableCompo from "./TableCompo.vue";
 import JsonService from "../services/JsonService.js";
 import ProductClass from "../classes/ProductClass.js";
 // import FilterCompo from "../components/FilterCompo.vue"
-import CheckoutCompo from "./CheckoutCompo.vue"
+import CheckoutCompo from "./CheckoutCompo.vue";
 
 export default {
   name: "ProductPage",
@@ -85,12 +89,12 @@ export default {
     // FilterCompo
     CheckoutCompo,
   },
-  props: ["productCart"],
+  props: ["productCart", "logFlag"],
   data() {
     return {
       products: new Array(),
       shoppingList: new Map(),
-      wishList: new Map(),
+      wishList: [],
       sum: "",
       item: "",
       idx: "",
@@ -105,28 +109,32 @@ export default {
         .catch((e) => console.log(e));
     },
     buybuy(idx) {
-      let product = this.products[idx];
-      // product is selected object
-      let selectedProduct = null;
-      if (this.shoppingList.has(product.id)) {
-        // if user clicked same product, slectedProduct will get a object by using pId and add amount number
-        selectedProduct = this.shoppingList.get(product.id);
-        selectedProduct.amount = selectedProduct.amount + 1;
-        selectedProduct.price = Math.floor(
-          product.price * selectedProduct.amount
-        );
+      if (this.logFlag) {
+        let product = this.products[idx];
+        // product is selected object
+        let selectedProduct = null;
+        if (this.shoppingList.has(product.id)) {
+          // if user clicked same product, slectedProduct will get a object by using pId and add amount number
+          selectedProduct = this.shoppingList.get(product.id);
+          selectedProduct.amount = selectedProduct.amount + 1;
+          selectedProduct.price = Math.floor(
+            product.price * selectedProduct.amount
+          );
+        } else {
+          console.log(product);
+          selectedProduct = new ProductClass(
+            product.id,
+            product.product_name,
+            Math.floor(product.price),
+            product.url,
+            product.category
+          );
+        }
+        this.shoppingList.set(product.id, selectedProduct);
+        this.sendMap();
       } else {
-        console.log(product);
-        selectedProduct = new ProductClass(
-          product.id,
-          product.product_name,
-          Math.floor(product.price),
-          product.url,
-          product.category
-        );
+        this.$router.push("/sign-in");
       }
-      this.shoppingList.set(product.id, selectedProduct);
-      this.sendMap();
     },
     sendMap() {
       // This emit will send a this.shoppingList to parent(App.vue) to display at ShoppingPageVue
@@ -149,17 +157,25 @@ export default {
       this.sendMap();
     },
     checkout(idx) {
-      let product = this.products[idx];
-      this.item = product;
-      this.idx = idx;
+      if (this.logFlag) {
+        let product = this.products[idx];
+        this.item = product;
+        this.idx = idx;
+      } else {
+        this.$router.push("/sign-in");
+      }
     },
     wishlist(idx) {
       let product = this.products[idx];
       let wishProduct = null;
-      if (this.wishList.has(product.id)) {
+      this.wishList.forEach((item) => {
+        if (item.id == product.id) {
+          wishProduct = item;
+        }
+      });
+      if (wishProduct) {
         return false;
       } else {
-        console.log(product);
         wishProduct = new ProductClass(
           product.id,
           product.product_name,
@@ -168,7 +184,8 @@ export default {
           product.category
         );
       }
-      this.wishList.set(product.id, wishProduct);
+      this.wishList.push(wishProduct);
+      sessionStorage.setItem("wishlist", JSON.stringify(this.wishList));
     },
     closeFn() {
       this.item = "";
@@ -193,6 +210,9 @@ export default {
     this.loadProducts();
     if (this.productCart != "") {
       this.shoppingList = this.productCart;
+    }
+    if (sessionStorage.getItem("wishlist")) {
+      this.wishList = JSON.parse(sessionStorage.getItem("wishlist"));
     }
   },
 };
@@ -246,6 +266,4 @@ section {
     border-color: black;
   }
 }
-
-
 </style>

@@ -10,7 +10,7 @@
           <h3>Name: {{ item.product_name }}</h3>
           <h3>Price: ${{ item.price }}</h3>
           <h3>Amount<input type="number" v-bind="itemAmount" /></h3>
-          <h3><button @click="wishListFn">Wish-List</button></h3>
+          <h3><button @click="wishlistFn">Wish-List</button></h3>
           <h3><button @click="cartAdd">Add to cart</button></h3>
         </aside>
       </article>
@@ -50,15 +50,15 @@ body {
 }
 #bgModalbox {
   background-color: rgba(211, 211, 211, 0.6);
-  position: absolute;
+  position: fixed;
   z-index: 1;
   width: 100%;
   height: 100vh;
-
+  top: 0;
 }
 section {
   z-index: 2;
-  position: absolute;
+  position: fixed;
   background-color: white;
   width: 100%;
   height: 50vh;
@@ -71,6 +71,7 @@ article {
   height: 50vh;
   width: 100%;
   display: flex;
+
   align-items: center;
   justify-content: center;
   border: 1px solid red;

@@ -1,7 +1,7 @@
 <template>
   <div>
     <site-nav @logout="logoutFn" :logFlag="logFlag"></site-nav>
-    <router-view @mapmap="addedItem" :sendFinall="item" :productCart="item" @login="logUserFlag" />
+    <router-view @mapmap="addedItem" :logFlag="logFlag" :sendFinall="item" :productCart="item" @login="logUserFlag" />
   </div>
 </template>
 

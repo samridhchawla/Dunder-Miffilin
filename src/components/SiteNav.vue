@@ -55,7 +55,7 @@
           <router-link
             active-class="active"
             class="nav-link wishlist-btn"
-            to="/cart"
+            to="/wishlist"
             >Wishlist</router-link
           >
         </li>

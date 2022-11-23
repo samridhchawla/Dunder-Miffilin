@@ -4,6 +4,7 @@ import ProductPage from "../components/ProductPage.vue";
 import SignIn from "../components/SignIn.vue";
 import ShoppingPage from "../components/ShoppingPage.vue";
 import NotFound from "../components/NotFound.vue";
+import WishList from "../components/WishList.vue";
 // import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const routes = [
@@ -35,6 +36,11 @@ const routes = [
     path: "/:PthMatch(.*)*",
     name: "NotFound",
     component: NotFound,
+  },
+  {
+    path: "/wishlist",
+    name: "wish List",
+    component: WishList,
   },
 ];
 const router = createRouter({
