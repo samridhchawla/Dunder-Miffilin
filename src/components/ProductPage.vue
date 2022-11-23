@@ -116,11 +116,11 @@ export default {
         );
       }
       this.shoppingList.set(product.id, selectedProduct);
+      this.sendMap();
     },
     sendMap() {
       // This emit will send a this.shoppingList to parent(App.vue) to display at ShoppingPageVue
       this.$emit("mapmap", this.shoppingList);
-      this.alertMsg();
     },
     cartAdd(idx,amount){
       let product = this.products[idx];
@@ -137,6 +137,7 @@ export default {
         );
         selectedProduct.amount = amount;
       this.shoppingList.set(product.id, selectedProduct);
+      this.sendMap();
     },
     checkout(idx){
       let product = this.products[idx];
@@ -164,11 +165,6 @@ export default {
       this.item = ''
       this.idx = '';
 
-    },
-    alertMsg() {
-      // You can know how many items have you added
-      let mapSize = this.shoppingList.size;
-      alert(mapSize + " " + "Items was added to Shopping Cart");
     },
     calTotal() {
       let total = 0;

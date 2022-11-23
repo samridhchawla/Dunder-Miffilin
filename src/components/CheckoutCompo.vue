@@ -9,9 +9,12 @@
                 <h3>Category: {{ item.category }}</h3>
                 <h3>Name: {{ item.product_name }}</h3>
                 <h3>Price: ${{ item.price }}</h3>
-                <h3>Amount<input type="number" v-bind="itemAmount"></h3>
+                <h3>Amount<input type="number" v-model="itemAmount"></h3>
+                <div id="buttonsDiv">
                 <h3><button @click="wishListFn">Wish-List</button></h3>
                 <h3><button @click="cartAdd">Add to cart</button></h3>
+                <h3 v-if="cartFlag">Added to cart</h3>
+                </div>
             </aside>
         </article>
     </section>
@@ -28,6 +31,7 @@ export default {
     data(){
         return {
             itemAmount: 0,
+            cartFlag:false,
         }
     },
     methods:{
@@ -35,6 +39,7 @@ export default {
             this.$emit('close')
         },
         cartAdd(){
+            this.cartFlag = true
             this.$emit('add',this.idx,this.itemAmount)
         },
         wishlistFn(){
@@ -64,5 +69,8 @@ export default {
         align-items: center;
         justify-content: center;
 
+    }
+    #buttonsDiv{
+        display: flex;
     }
 </style>
