@@ -1,6 +1,7 @@
 <template>
   <h1></h1>
-  <table-compo @buy2="buybuy" :products="products"></table-compo>
+  <checkout-compo :idx="idx" :item="item" v-if="item" @close="closeFn" @add="cartAdd" @wishlist="wishlist"></checkout-compo>
+  <table-compo @buy2="buybuy" :products="products" @checkout="checkout"></table-compo>
   <section>
     <!-- <filter-compo></filter-compo> -->
 
@@ -65,11 +66,13 @@ import TableCompo from "./TableCompo.vue";
 import JsonService from "../services/JsonService.js";
 import ProductClass from "../classes/ProductClass.js";
 // import FilterCompo from "../components/FilterCompo.vue"
+import CheckoutCompo from "../components/CheckoutCompo.vue"
 
 export default {
   name: "ProductPage",
   components: {
     TableCompo,
+    CheckoutCompo,
     // FilterCompo
   },
   props: ["productCart"],
@@ -77,7 +80,10 @@ export default {
     return {
       products: new Array(),
       shoppingList: new Map(),
+      wishList: new Map(),
       sum: "",
+      item: "",
+      idx: "",
     };
   },
   methods: {
@@ -115,6 +121,49 @@ export default {
       // This emit will send a this.shoppingList to parent(App.vue) to display at ShoppingPageVue
       this.$emit("mapmap", this.shoppingList);
       this.alertMsg();
+    },
+    cartAdd(idx,amount){
+      let product = this.products[idx];
+      // product is selected object
+      let selectedProduct = null;
+
+        console.log(product);
+        selectedProduct = new ProductClass(
+          product.id,
+          product.product_name,
+          Math.floor(product.price),
+          product.url,
+          product.category
+        );
+        selectedProduct.amount = amount;
+      this.shoppingList.set(product.id, selectedProduct);
+    },
+    checkout(idx){
+      let product = this.products[idx];
+      this.item = product;
+      this.idx = idx;
+    },
+    wishlist(idx){
+      let product = this.products[idx];
+      let wishProduct = null;
+      if (this.wishList.has(product.id)) {
+        return false;
+      } else {
+        console.log(product);
+        wishProduct = new ProductClass(
+          product.id,
+          product.product_name,
+          Math.floor(product.price),
+          product.url,
+          product.category
+        );
+      }
+      this.wishList.set(product.id, wishProduct);
+    },
+    closeFn(){
+      this.item = ''
+      this.idx = '';
+
     },
     alertMsg() {
       // You can know how many items have you added

@@ -3,7 +3,7 @@
     <article v-for="(product, idx) in products" :key="idx">
       <button type="button" @click="buy(idx)" id="add">+</button>
      
-      <img :src="'data/img/' + product.url" />
+      <img :src="'data/img/' + product.url"  @click="checkout(idx)"/>
       <aside>
         <h3>Category: {{ product.category }}</h3>
         <h3>Name: {{ product.product_name }}</h3>
@@ -39,6 +39,11 @@ export default {
     buy(idx) {
       // This emit will send a index of added item
       this.$emit("buy2", idx);
+      // this.calTotal()
+    },
+    checkout(idx) {
+      // This emit will send a index of added item
+      this.$emit("checkout", idx);
       // this.calTotal()
     },
     setRating: function (rating) {
