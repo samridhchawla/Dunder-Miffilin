@@ -44,7 +44,6 @@ export default {
         },
         wishlistFn(){
             this.$emit('wishlist',this.idx)
-            alert("work")
 
         }
     }
