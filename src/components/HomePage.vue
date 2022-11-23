@@ -631,10 +631,7 @@ aside {
       background: var(--black);
     }
   }
-  p {
-  }
-  img {
-  }
+
 }
 
 .magazine {

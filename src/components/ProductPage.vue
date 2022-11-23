@@ -1,8 +1,7 @@
 <template>
   <section>
-  
-  
-
+   
+    <filter-compo></filter-compo>
     <article>
       <div class="row justify-content-start align-items-start g-2">
         <div class="col">
@@ -62,12 +61,13 @@
 import TableCompo from "./TableCompo.vue";
 import JsonService from "../services/JsonService.js";
 import ProductClass from "../classes/ProductClass.js";
-
+import FilterCompo from "../components/FilterCompo.vue"
 
 export default {
   name: "ProductPage",
   components: {
     TableCompo,
+    FilterCompo
     
   },
   props: ["productCart"],
@@ -294,4 +294,9 @@ span {
 #total a {
   text-decoration: none;
 }
+
+
+
+
+
 </style>
