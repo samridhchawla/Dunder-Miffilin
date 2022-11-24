@@ -47,82 +47,46 @@
   </body>
 </template>
 
-<!-- <script setup>
-import { ref } from "vue";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useRouter } from "vue-router";
-
-const email = ref("");
-const password = ref("");
-const errMsg = ref();
-
-const router = useRouter();
-
-const signIn = () => {
-  signInWithEmailAndPassword(getAuth(), email.value, password.value)
-    .then((data) => {
-      data;
-      console.log("Successfully logged in!");
-      router.push("/");
-    })
-    .catch((error) => {
-      switch (error.code) {
-        case "auth/invalid-email":
-          errMsg.value = "Invalid email";
-          break;
-        case "auth/user-not-found":
-          errMsg.value = "No account with that email was found";
-          break;
-        case "auth/wrong-password":
-          errMsg.value = "Incorrect password";
-          break;
-        default:
-          errMsg.value = "Email or password was incorrect";
-          break;
-      }
-    });
-};
-</script> -->
-<script >
+<script>
 import JsonServiceUser from "../services/JsonService-user";
 
-export default {
-  name: "signIn",
-  components: {},
-  data() {
-    return {
-      users: new Map(),
-      username: "",
-      password: "",
-    };
-  },
-  methods: {
-    async loadUsers() {
-      JsonServiceUser.getJson()
-        .then((res) => {
-          res.data.forEach((user) => {
-            this.users.set(user.userName, user);
-          });
-        })
-        .catch((e) => console.log(e));
+  export default {
+    name: "signIn",
+    components: {},
+    data() {
+      return {
+        users: new Map(),
+        username: "",
+        password: "",
+      };
     },
-    login() {
-      if (this.users.has(this.username)) {
-        if (this.users.get(this.username).password === this.password) {
-          this.$emit("login", true, this.users.get(this.username));
-          this.$router.push("/");
+    methods: {
+      async loadUsers() {
+        JsonServiceUser.getJson()
+          .then((res) => {
+            res.data.forEach((user) => {
+              this.users.set(user.userName, user);
+            });
+          })
+          .catch((e) => console.log(e));
+      },
+      login() {
+        if (this.users.has(this.username)) {
+          if (this.users.get(this.username).password === this.password) {
+            this.$emit("login", true, this.users.get(this.username));
+            this.$router.push("/");
+          } else {
+            console.log("incorrect password or username");
+          }
         } else {
           console.log("incorrect password or username");
         }
-      } else {
-        console.log("incorrect password or username");
-      }
+      },
     },
-  },
-  mounted() {
-    this.loadUsers();
-  },
-};
+    mounted() {
+      this.loadUsers();
+    },
+  };
 </script>
 
 <style lang="scss" scoped>

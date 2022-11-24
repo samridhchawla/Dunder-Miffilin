@@ -1,9 +1,9 @@
 <template>
   <body>
-    <div title="404">404
-
-    </div>
-    <router-link class="btn" :to="{ name: 'home' }"><i class="fa-solid fa-backward"></i> to <i class="fa-solid fa-house"></i></router-link>
+    <div title="404">404</div>
+    <router-link class="btn" :to="{ name: 'home' }"
+      ><i class="fa-solid fa-backward"></i> to <i class="fa-solid fa-house"></i
+    ></router-link>
   </body>
 </template>
 

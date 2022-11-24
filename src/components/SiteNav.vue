@@ -24,10 +24,8 @@
               alt="DM-logo"
           /></router-link>
         </li>
-        <li class="nav-item product-page">
-          <router-link active-class="active" class="nav-link" to="/product"
-            >Products</router-link
-          >
+        <li>
+          <router-link class="product-btn" to="/product">Products</router-link>
         </li>
         <!-- search component  -->
 
@@ -49,63 +47,42 @@
         </div>
 
         <!-- search component end -->
-        <li class="nav-item">
-          <router-link
-            active-class="active"
-            class="nav-link cart-btn"
-            to="/cart"
+        <li>
+          <router-link class="cart-btn" to="/cart"
             >Cart <i class="fa-solid fa-cart-shopping"></i
           ></router-link>
         </li>
-        <li class="nav-item">
-          <router-link
-            active-class="active"
-            class="nav-link wishlist-btn"
-            to="/wishlist"
+        <li>
+          <router-link class="wishlist-btn" to="/wishlist"
             >Wishlist</router-link
           >
         </li>
-        <li>
-          <span v-if="logFlag">
-            <button class="logout-btn" @click="logoutFn">
-              <i class="fa-solid fa-arrow-right-from-bracket"></i>Logout
+        <li class="login-logout-btn">
+          <div v-if="logFlag" id="container">
+            <button class="learn-more" @click="logoutFn">
+              <span class="circle" aria-hidden="true">
+                <span class="icon arrow"></span>
+              </span>
+              <router-link to="/sign-in" class="button-text">
+                logout</router-link
+              >
             </button>
-          </span>
-          <!-- @click="handleSignOut" -->
-          <span v-else>
-            <router-link class="login-btn" to="/sign-in"
-              ><i class="fa-regular fa-user"></i> Login
-            </router-link>
-          </span>
+          </div>
+          <div v-else id="container">
+            <button class="learn-more">
+              <span class="circle" aria-hidden="true">
+                <span class="icon arrow"></span>
+              </span>
+              <span class="button-text"
+                ><i class="fa-regular fa-user"></i> login</span
+              >
+            </button>
+          </div>
         </li>
       </ul>
     </div>
   </nav>
 </template>
-
-<!-- <script setup>
-import { ref } from "vue";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { useRouter } from "vue-router";
-
-const router = useRouter();
-
-const isLoggedIn = ref(true);
-
-// runs after firebase is initialized
-onAuthStateChanged(getAuth(), function (user) {
-  if (user) {
-    isLoggedIn.value = true; // if we have a user
-  } else {
-    isLoggedIn.value = false; // if we do not
-  }
-});
-
-const handleSignOut = () => {
-  signOut(getAuth());
-  router.push("/");
-};
-</script> -->
 <script>
 export default {
   name: "SiteNav",
@@ -119,9 +96,12 @@ export default {
     },
     searchFn() {
       this.$emit("search", this.searchTxt);
-      console.log(this.searchTxt);
+
     },
   },
+  mounted() {
+    
+  }
 };
 </script>
 
@@ -143,11 +123,10 @@ export default {
 }
 /* search parent */
 .search-items {
-  width: 90%;
+  width: 99%;
   position: relative;
   display: flex;
   justify-content: flex-end;
-
   margin-left: 0%;
 }
 /* search field */
@@ -161,7 +140,6 @@ export default {
   -webkit-box-shadow: inset 0 0 10px black;
   -moz-box-shadow: inset 0 0 10px black;
   box-shadow: inset 0 0 5px black;
-
   background: white;
 }
 
@@ -178,11 +156,18 @@ export default {
   width: 90px;
   height: 50px;
 }
-.product-page,
+.product-btn,
 .cart-btn,
 .wishlist-btn {
   font-family: "Raleway", sans-serif;
   color: white;
+  text-decoration: none;
+  padding: 5%;
+}
+.product-btn:hover,
+.cart-btn:hover,
+.wishlist-btn:hover {
+  color: hotpink;
 }
 
 nav {
@@ -204,13 +189,20 @@ nav {
   align-items: center;
   width: 15%;
   justify-content: center;
+  text-align: center;
 }
 #collapsibleNavId > ul > a {
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
+
 span {
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 .logout-btn {
   color: black;
@@ -234,7 +226,7 @@ span {
   border: 1px solid white;
   border-radius: 50px;
   padding: 7%;
-  background-color: black;
+  background-color: hotpink;
 }
 
 .login-btn {
@@ -257,5 +249,125 @@ span {
   padding: 7%;
   border-radius: 50px;
   border: 1px solid mediumslateblue;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Mukta:700");
+* {
+  box-sizing: border-box;
+}
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Mukta", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  min-height: 100vh;
+  background: #f3f8fa;
+}
+
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+  color: white;
+}
+button.learn-more {
+  width: 12rem;
+  height: auto;
+}
+button.learn-more .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: #282936;
+  border-radius: 1.625rem;
+}
+button.learn-more .circle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+}
+button.learn-more .circle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+button.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.25rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+button.learn-more .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: #282936;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+button.learn-more .button-text > i{
+ padding: 3%;
+}
+button:hover .circle {
+  width: 100%;
+}
+button:hover .circle .icon.arrow {
+  background: #fff;
+  transform: translate(1rem, 0);
+}
+button:hover .button-text {
+  color: #fff;
+}
+
+@supports (display: grid) {
+  body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 0.625rem;
+    grid-template-areas: ". main main ." ". main main .";
+  }
+
+  #container {
+    grid-area: main;
+    align-self: center;
+    justify-self: center;
+  }
 }
 </style>

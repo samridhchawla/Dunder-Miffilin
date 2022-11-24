@@ -21,14 +21,15 @@
         <p>
           Prison Mike is a horribly stereotyped character of Michael's that
           tries to prove that prison is horrible. Michael says that he found
-          information for <em>Prison Mike </em>in movies. The rest of the office listens
-          to Prison Mike in shock. Martin says that his experience in jail was
-          not anything like Prison Mike's.
+          information for <em>Prison Mike </em>in movies. The rest of the office
+          listens to Prison Mike in shock. Martin says that his experience in
+          jail was not anything like Prison Mike's.
         </p>
         <p>
-          <em>Prison Mike </em> wears a purple bandana over his head, speaking in a
-          caricature of New York English and uses stereotypical prison slang. He
-          squints one eye, suggesting that it was injured in a prison fight.
+          <em>Prison Mike </em> wears a purple bandana over his head, speaking
+          in a caricature of New York English and uses stereotypical prison
+          slang. He squints one eye, suggesting that it was injured in a prison
+          fight.
         </p>
         <p>
           "I mean, that's terrible right?" she asked.The Office, which brands
@@ -166,7 +167,8 @@
           <div class="pie__content">
             <h4>It is time for Dundies!</h4>
             <p>
-              No man is left behind. There's infinite prizes with this Dundies and it is going to much harder and crazier this season.
+              No man is left behind. There's infinite prizes with this Dundies
+              and it is going to much harder and crazier this season.
             </p>
           </div></a
         ><a class="sidebar-item captcha">

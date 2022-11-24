@@ -15,78 +15,20 @@
     @buy2="buybuy"
     :products="products"
     @checkout="checkout"
+    :filteredMap="filteredMap"
+    :filterFlag="filterFlag"
   ></table-compo>
-  <!-- <filter-compo></filter-compo> -->
-
-  <!-- <section> -->
-  <!-- <article>
-      <div class="row justify-content-start align-items-start g-2">
-        <div class="col">
-          <div class="row justify-content-start align-items-start g-2">
-            <div class="col-6"> -->
-  <!-- <div>
-              <nav>
-                <ul>
-                  <li class="var_nav">
-                    <div class="link_bg"></div>
-                    <div class="link_title">
-                      <div class="icon">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                      </div>
-                      <a href="#"><span>Search</span></a>
-                    </div>
-                  </li>
-                  <li class="var_nav">
-                    <div class="link_bg"></div>
-                    <div class="link_title">
-                      <div class="icon">
-                        <i class="fa-solid fa-filter"></i>
-                      </div>
-                      <a href="#"><span>Sort</span></a>
-                    </div>
-                  </li>
-                </ul>
-              </nav>
-            </div> -->
-
-  <!-- </div> -->
-  <!-- <div class="col-6" id="addtable">
-              <h2>Added List</h2>
-              <table-compo
-                :shopping="shoppingList"
-                @total="total"
-              >
-            </table-compo>
-              <br />
-              <hr />
-              <h2>Total Price: ${{ sum }}</h2>
-              <div id="total" v-on:click="calTotal()">
-                <a>Calculate Total Price</a>
-              </div>
-              <br />
-              <hr />
-              <div v-on:click="sendMap()" id="sendMap">
-                <a>Add to Shopping Cart</a>
-              </div>
-            </div> -->
-  <!-- </div>
-        </div>
-      </div>
-    </article> -->
-  <!-- </section> -->
 </template>
 <script>
 import TableCompo from "./TableCompo.vue";
 import JsonService from "../services/JsonService.js";
 import ProductClass from "../classes/ProductClass.js";
-// import FilterCompo from "../components/FilterCompo.vue"
 import CheckoutCompo from "./CheckoutCompo.vue";
 
 export default {
   name: "ProductPage",
   components: {
     TableCompo,
-    // FilterCompo
     CheckoutCompo,
   },
   props: ["productCart", "logFlag", "search"],
@@ -94,10 +36,12 @@ export default {
     return {
       products: new Array(),
       shoppingList: new Map(),
+      filteredMap: new Map(),
       wishList: [],
       sum: "",
       item: "",
       idx: "",
+      filterFlag: true,
     };
   },
   methods: {
@@ -206,7 +150,26 @@ export default {
       this.sum = total;
     },
   },
-  computed: {},
+  watch: {
+    search: function (val) {
+      if (val != "") {
+        this.filteredMap = new Map();
+        let vall = val.toString().toLowerCase();
+        console.log(vall);
+        this.products.filter((product) => {
+          if (product.product_name.toLowerCase().indexOf(vall) > -1) {
+            console.log(product, "hi");
+            this.filteredMap.set(product.id, product);
+            console.log(this.filteredMap);
+          }
+        });
+        this.filterFlag = false;
+      } else {
+        this.loadProducts();
+        this.filterFlag = true;
+      }
+    },
+  },
   mounted() {
     this.loadProducts();
     if (this.productCart != "") {
@@ -227,7 +190,6 @@ export default {
 section {
   display: flex;
   padding: 2% 5% 2% 5%;
-
   justify-content: space-around;
 }
 

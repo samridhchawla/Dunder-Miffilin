@@ -65,8 +65,8 @@ export default {
     font-family: 'Nunito', sans-serif;
 
     font-family: 'Roboto Mono', monospace; */
-    @import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100&family=Roboto+Mono:wght@100;200;300;400;500&display=swap");
-    /* font-family: 'Big Shoulders Display', cursive;
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100&family=Roboto+Mono:wght@100;200;300;400;500&display=swap");
+/* font-family: 'Big Shoulders Display', cursive;
 
     font-family: 'Roboto Mono', monospace; */
 * {
@@ -88,22 +88,24 @@ body {
   height: 100vh;
   top: 0;
 }
-.info-container{
+.info-container {
   display: flex;
   flex-direction: column;
-  column-gap: 2;
+  row-gap: 20px;
 }
 .name {
   font-family: "Roboto Mono", monospace;
   width: 60%;
-
+  font-size: 40px;
 }
-.category{
- font-family: 'Roboto Mono', monospace;
-
+.category {
+  font-family: "Roboto Mono", monospace;
+  font-size: 20px;
 }
-.price{
-   font-family: 'Nunito', sans-serif;
+.price {
+  padding-top: 40px;
+  font-family: "Nunito", sans-serif;
+  font-size: 30px;
 }
 section {
   z-index: 2;
@@ -112,7 +114,7 @@ section {
   width: 90%;
   height: 80vh;
   display: flex;
-  box-shadow: black 10px 10px 100px 0px;
+  box-shadow: 5px 5px 5px #aaaaaa;
   flex-direction: column;
   border-radius: 30px;
   justify-content: center;
@@ -147,22 +149,17 @@ img {
   margin-right: 5px;
 }
 aside {
-  padding-top: 2%;
-  margin-top: 20px;
   padding-left: 2%;
-  height: 60vh;
- 
   display: flex;
+  height: 100%;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   padding-right: 5%;
 }
 .all-btns {
-  margin-top: 300px;
-
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  column-gap: 10px;
 }
 .wishlist-btn,
 .cart-btn,
@@ -171,7 +168,7 @@ aside {
   border: 0px solid transparent;
   border-radius: 10px;
   background: mediumslateblue;
-  width: 30%;
+  width: 25%;
   padding: 2%;
 }
 .added {
@@ -183,7 +180,7 @@ aside {
   border: 0px solid transparent;
   border-radius: 10px;
   background: slateblue;
-  width: 30%;
+  width: 25%;
   padding: 2%;
 }
 .amt-input {

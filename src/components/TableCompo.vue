@@ -2,11 +2,17 @@
   <section>
     <article v-for="(product, idx) in products" :key="idx">
       <button type="button" @click="buy(idx)" id="add">+</button>
-      <img :src="'data/img/' + product.url" @click="checkout(idx)"/>
+      <img :src="'data/img/' + product.url" @click="checkout(idx)" />
       <aside>
-        <h3 class="price">${{ product.price }}</h3>
-        <h3 class="name">{{ product.product_name }}</h3>
-        <h3 class="category">{{ product.category }}</h3>
+        <h3 class="price">
+          ${{ filterFlag ? product.price : product[1].price }}
+        </h3>
+        <h3 class="name">
+          {{ filterFlag ? product.product_name : product[1].item_name }} 
+        </h3>
+        <h3 class="category">
+          {{ filterFlag ? product.category : product[1].category }}
+        </h3>
         <vue3-star-rating
           class="rating"
           v-bind:star-size="20"
@@ -20,7 +26,7 @@
 import Vue3StarRating from "vue-star-rating";
 export default {
   name: "TableCompo",
-  props: ["products", "shopping"],
+  props: ["products", "shopping", "filteredMap", "filterFlag"],
   data() {
     return {
       sum: "",
@@ -75,7 +81,7 @@ export default {
     font-family: 'Roboto Mono', monospace; */
 img {
   width: 100%;
-  height: 180px;
+  height: 200px;
   object-fit: cover;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
@@ -90,23 +96,25 @@ section {
 }
 article {
   width: 17%;
-  height: 45vh;
   display: flex;
   flex-direction: column;
   row-gap: 2vh;
-  margin-bottom: 8%;
+  margin-bottom: 3%;
   border-radius: 10px;
-  border-bottom: 1px solid black;
+  box-shadow: 5px 5px 5px #aaaaaa;
   padding-bottom: 4%;
 }
 aside {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 40%;
-
+  height: 30%;
   padding-left: 5%;
   color: black;
+}
+.rating {
+  display: flex;
+  height: 10%;
 }
 
 .added {
@@ -150,7 +158,7 @@ h3 {
 #add {
   background: white;
   border-radius: 999px;
-  box-shadow: black 0 10px 20px -10px;
+  box-shadow: 0 5px 0 #aaaaaa;
   box-sizing: border-box;
   color: black;
   cursor: pointer;
@@ -173,6 +181,7 @@ h3 {
   width: fit-content;
   word-break: break-word;
   border: 0;
+  transition: 0.3s;
 }
 
 .name {
