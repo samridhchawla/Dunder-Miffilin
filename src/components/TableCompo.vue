@@ -1,27 +1,26 @@
 <template>
-<section>
-    <article v-for="(product, idx) in products" :key="idx">
-      <button type="button" @click="buy(idx)" id="add">+</button>
-     
-      <img :src="'data/img/' + product.url"  @click="checkout(idx)"/>
+  <section >
+    <article v-for="(product, idx) in (filterFlag ? products : filteredMap)" :key="idx">
+      <button type="button" @click="buy(filterFlag ? idx :product[1].id - 1)" id="add">+</button>
+      <img :src="'data/img/' + (filterFlag ? product.url:product[1].url )" @click="checkout(filterFlag ? idx : product[1].id - 1)"/>
       <aside>
-        <h3>Category: {{ product.category }}</h3>
-        <h3>Name: {{ product.product_name }}</h3>
-        <h3>Price: ${{ product.price }}</h3>
+        <h3 class="price">${{ filterFlag ? product.price :product[1].price}}</h3>
+        <h3 class="name">{{filterFlag ? product.product_name :product[1].product_name}}</h3>
+        <h3 class="category">{{filterFlag ? product.category :product[1].category}}</h3>
         <vue3-star-rating
+          class="rating"
           v-bind:star-size="20"
           @update:rating="setRating"
         ></vue3-star-rating>
-      
       </aside>
     </article>
-</section>
+  </section>
 </template>
 <script>
 import Vue3StarRating from "vue-star-rating";
 export default {
   name: "TableCompo",
-  props: ["products", "shopping"],
+  props: ["products", "shopping",'filteredMap','filterFlag'],
   data() {
     return {
       sum: "",
@@ -68,45 +67,48 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100&display=swap");
+/* font-family: 'Big Shoulders Display', cursive; */
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100&family=Roboto+Mono:wght@100;200;300;400;500&display=swap");
+/* font-family: 'Big Shoulders Display', cursive;
+
+    font-family: 'Roboto Mono', monospace; */
 img {
   width: 100%;
-  height: 80%;
-   border-top-right-radius: 30px;
-   border-top-left-radius: 30px;
-
+  height: 180px;
+  object-fit: cover;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 .shopping,
 section {
   display: flex;
+
   flex-wrap: wrap;
   row-gap: 2vh;
   column-gap: 1vh;
-  width: 100%;
-}
-section {
-  border-right: 2px dotted black;
 }
 article {
   width: 17%;
-  height: 35vh;
-  background: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
+  height: 45vh;
   display: flex;
   flex-direction: column;
   row-gap: 2vh;
-
-  border-radius: 30px;
- 
+  margin-bottom: 8%;
+  border-radius: 10px;
+  border-bottom: 1px solid black;
+  padding-bottom: 4%;
 }
 aside {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 40%;
-  padding-bottom: 4%;
+
   padding-left: 5%;
   color: black;
-  
 }
+
 .added {
   width: 23%;
   background: linear-gradient(#f06330, #ffb499);
@@ -140,24 +142,26 @@ h3 {
   box-shadow: 0 2px 0 #aaaaaa;
 }
 #add:hover {
+  color: white;
   transform: translateY(3px);
   text-decoration: none;
+  background: hotpink;
 }
 #add {
-  background: #5e5df0;
+  background: white;
   border-radius: 999px;
-  box-shadow: #5e5df0 0 10px 20px -10px;
+  box-shadow: black 0 10px 20px -10px;
   box-sizing: border-box;
-  color: #ffffff;
+  color: black;
   cursor: pointer;
   margin-top: 0.7%;
-  margin-left: 13%;
+  margin-left: 11%;
   position: absolute;
   font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji",
     NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji",
     EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
     "Noto Sans", sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 24px;
   opacity: 1;
@@ -169,6 +173,16 @@ h3 {
   width: fit-content;
   word-break: break-word;
   border: 0;
+}
 
+.name {
+  font-family: "Roboto Mono", monospace;
+  font-size: 20px;
+}
+.category {
+  font-family: "Big Shoulders Display", cursive;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 17px;
 }
 </style>

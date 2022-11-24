@@ -24,42 +24,58 @@
               alt="DM-logo"
           /></router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item product-page">
           <router-link active-class="active" class="nav-link" to="/product"
-            >Product Page</router-link
+            >Products</router-link
           >
         </li>
         <!-- search component  -->
 
         <div class="navbar container-fluid search-items">
           <input
+            v-model="searchTxt"
             class="form-control me-2"
             type="search"
-            placeholder="Search"
+            placeholder="Search Dunder Mifflin..."
             aria-label="Search"
           />
-          <button class="btn btn-outline-success" type="submit">
+          <button
+            @click="searchFn"
+            class="btn btn-outline-success"
+            type="submit"
+          >
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
 
+        <!-- search component end -->
         <li class="nav-item">
-          <router-link active-class="active" class="nav-link" to="/cart"
+          <router-link
+            active-class="active"
+            class="nav-link cart-btn"
+            to="/cart"
             >Cart <i class="fa-solid fa-cart-shopping"></i
           ></router-link>
         </li>
         <li class="nav-item">
-          <router-link active-class="active" class="nav-link" to="/wishlist"
+          <router-link
+            active-class="active"
+            class="nav-link wishlist-btn"
+            to="/wishlist"
             >Wishlist</router-link
           >
         </li>
         <li>
           <span v-if="logFlag">
-            <button class="logout-btn" @click="logoutFn">Logout</button>
+            <button class="logout-btn" @click="logoutFn">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>Logout
+            </button>
           </span>
           <!-- @click="handleSignOut" -->
-          <span class="btns" v-else>
-            <router-link class="login-btn" to="/sign-in"> Login </router-link>
+          <span v-else>
+            <router-link class="login-btn" to="/sign-in"
+              ><i class="fa-regular fa-user"></i> Login
+            </router-link>
           </span>
         </li>
       </ul>
@@ -101,11 +117,15 @@ export default {
       this.$router.push("/sign-in");
       this.$emit("logout", true);
     },
+    searchFn() {
+      this.$emit("search", this.searchTxt);
+    },
   },
 };
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -122,18 +142,26 @@ export default {
 }
 /* search parent */
 .search-items {
-  width: 100%;
+  width: 90%;
   position: relative;
   display: flex;
   justify-content: flex-end;
+
+  margin-left: 0%;
 }
 /* search field */
 .search-items > input {
-  width: 90%;
+  width: 98%;
   padding: 2%;
   display: inline-block;
   height: 50px;
   box-sizing: border-box;
+  border: 1px solid black;
+  -webkit-box-shadow: inset 0 0 10px black;
+  -moz-box-shadow: inset 0 0 10px black;
+  box-shadow: inset 0 0 5px black;
+
+  background: white;
 }
 
 /* search field */
@@ -149,6 +177,13 @@ export default {
   width: 90px;
   height: 50px;
 }
+.product-page,
+.cart-btn,
+.wishlist-btn {
+  font-family: "Raleway", sans-serif;
+  color: white;
+}
+
 nav {
   background-color: black;
   align-items: center;
@@ -173,37 +208,53 @@ nav {
   align-items: center;
   justify-content: center;
 }
-.logout-btn {
-  color: white;
-  border: 0px solid transparent;
-  border-radius: 50px;
-  padding: 5%;
-  background-color: transparent;
+span {
+  width: 100%;
 }
-.logout-btn:hover {
+.logout-btn {
   color: black;
   border: 1px solid white;
   border-radius: 50px;
-  padding: 5%;
+  padding: 7%;
   background-color: white;
-}
-.btns {
+  position: relative;
+  font-size: 12px;
   display: flex;
-  justify-content: space-between;
-  width: 120px;
+
+  justify-content: center;
+  align-items: center;
 }
-.register-btn {
-  color: floralwhite;
-  text-decoration: none;
+.logout-btn > i {
+  margin-right: 5px;
+  font-size: 15px;
 }
-.register-btn:hover {
+.logout-btn:hover {
   color: white;
+  border: 1px solid white;
+  border-radius: 50px;
+  padding: 7%;
+  background-color: black;
 }
+
 .login-btn {
-  color: bisque;
+  color: black;
   text-decoration: none;
+  border: 1px solid white;
+  background-color: white;
+  border-radius: 50px;
+  padding: 7%;
+  font-size: 14px;
 }
+.login-btn > i {
+  margin-right: 5px;
+  font-size: 14px;
+}
+
 .login-btn:hover {
   color: white;
+  background-color: mediumslateblue;
+  padding: 7%;
+  border-radius: 50px;
+  border: 1px solid mediumslateblue;
 }
 </style>
