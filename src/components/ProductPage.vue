@@ -89,7 +89,7 @@ export default {
     // FilterCompo
     CheckoutCompo,
   },
-  props: ["productCart", "logFlag"],
+  props: ["productCart", "logFlag", "search"],
   data() {
     return {
       products: new Array(),
@@ -206,6 +206,7 @@ export default {
       this.sum = total;
     },
   },
+  computed: {},
   mounted() {
     this.loadProducts();
     if (this.productCart != "") {

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <site-nav @logout="logoutFn" :logFlag="logFlag"></site-nav>
-    <router-view @mapmap="addedItem" :logFlag="logFlag" :sendFinall="item" :productCart="item" @login="logUserFlag" />
+    <site-nav @search="search" @logout="logoutFn" :logFlag="logFlag"></site-nav>
+    <router-view :search="searchTxt" @mapmap="addedItem" :logFlag="logFlag" :sendFinall="item" :productCart="item" @login="logUserFlag" />
   </div>
 </template>
 
@@ -17,7 +17,8 @@ export default {
     return {
       logFlag: false,
       logedUser: "",
-      item:""
+      item: "",
+      searchTxt: "",
     };
   },
   methods: {
@@ -36,6 +37,9 @@ export default {
     addedItem(val) {
       this.item = val;
     },
+    searchFn(text) {
+      this.searchTxt = text;
+    }
   },
   mounted() {
     if (sessionStorage.getItem("user")) {

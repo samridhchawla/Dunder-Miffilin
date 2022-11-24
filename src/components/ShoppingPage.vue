@@ -43,7 +43,7 @@
 <script>
 export default {
   name: "ShoppingPage",
-  props: ["sendFinall","logFlag"],
+  props: ["sendFinall", "logFlag"],
   // sendFinall is map of added products
   data() {
     return {

@@ -33,16 +33,22 @@
 
         <div class="navbar container-fluid search-items">
           <input
+            v-model="searchTxt"
             class="form-control me-2"
             type="search"
             placeholder="Search Dunder Mifflin..."
             aria-label="Search"
           />
-          <button class="btn btn-outline-success" type="submit">
+          <button
+            @click="searchFn"
+            class="btn btn-outline-success"
+            type="submit"
+          >
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
 
+        <!-- search component end -->
         <li class="nav-item">
           <router-link
             active-class="active"
@@ -111,6 +117,10 @@ export default {
       this.$router.push("/sign-in");
       this.$emit("logout", true);
     },
+    searchFn() {
+      this.$emit("search", this.searchTxt);
+      console.log(this.searchTxt);
+    },
   },
 };
 </script>
@@ -172,7 +182,7 @@ export default {
 .cart-btn,
 .wishlist-btn {
   font-family: "Raleway", sans-serif;
-  color: white ;
+  color: white;
 }
 
 nav {
