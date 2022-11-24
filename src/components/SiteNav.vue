@@ -36,11 +36,13 @@
             type="search"
             placeholder="Search Dunder Mifflin..."
             aria-label="Search"
+            @keyup.enter="searchFn"
           />
           <button
             @click="searchFn"
             class="btn btn-outline-success"
             type="submit"
+
           >
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>

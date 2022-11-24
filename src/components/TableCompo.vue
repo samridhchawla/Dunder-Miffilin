@@ -1,14 +1,26 @@
 <template>
   <section>
-    <article v-for="(product, idx) in products" :key="idx">
-      <button type="button" @click="buy(idx)" id="add">+</button>
-      <img :src="'data/img/' + product.url" @click="checkout(idx)" />
+    <article
+      v-for="(product, idx) in filterFlag ? products : filteredMap"
+      :key="idx"
+    >
+      <button
+        type="button"
+        @click="buy(filterFlag ? idx : product[1].id - 1)"
+        id="add"
+      >
+        +
+      </button>
+      <img
+        :src="'data/img/' + (filterFlag ? product.url : product[1].url)"
+        @click="checkout(filterFlag ? idx : product[1].id - 1)"
+      />
       <aside>
         <h3 class="price">
           ${{ filterFlag ? product.price : product[1].price }}
         </h3>
         <h3 class="name">
-          {{ filterFlag ? product.product_name : product[1].item_name }} 
+          {{ filterFlag ? product.product_name : product[1].product_name }}
         </h3>
         <h3 class="category">
           {{ filterFlag ? product.category : product[1].category }}
