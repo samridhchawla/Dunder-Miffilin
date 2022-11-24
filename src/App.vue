@@ -1,6 +1,6 @@
 <template>
   <div>
-    <site-nav @search="search" @logout="logoutFn" :logFlag="logFlag"></site-nav>
+    <site-nav @search="searchFn" @logout="logoutFn" :logFlag="logFlag"></site-nav>
     <router-view :search="searchTxt" @mapmap="addedItem" :logFlag="logFlag" :sendFinall="item" :productCart="item" @login="logUserFlag" />
   </div>
 </template>

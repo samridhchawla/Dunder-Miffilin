@@ -36,7 +36,7 @@
             type="search"
             placeholder="Search Dunder Mifflin..."
             aria-label="Search"
-            @keyup.enter="search"
+            @keyup.enter="searchFn"
           />
           <button
             @click="searchFn"
@@ -95,6 +95,8 @@ export default {
     },
     searchFn() {
       this.$emit("search", this.searchTxt);
+ 
+
     },
   },
   mounted() {},

@@ -18,7 +18,7 @@
       <h2>Total Price:</h2>
       <h1>${{ sum2 }}</h1>
       <div id="total" v-on:click="calTotal2()">
-        <a>Calculate Total Price</a>
+        <a>Checkout</a>
       </div>
     </section>
   </div>

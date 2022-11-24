@@ -25,7 +25,7 @@
               class="amt-input"
               type="number"
               placeholder="Amount"
-              v-bind="itemAmount"
+              v-model="itemAmount"
             />
           </div>
         </aside>
