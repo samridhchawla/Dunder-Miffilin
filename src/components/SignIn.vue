@@ -47,7 +47,7 @@
   </body>
 </template>
 
-<script>
+<script >
 import JsonServiceUser from "../services/JsonService-user";
 
   export default {

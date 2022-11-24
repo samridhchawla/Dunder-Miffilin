@@ -36,6 +36,20 @@
           itself as the best place to build, test, and discover front-end code,
           has declined to comment at this time.
         </p>
+        <p>
+          The Office is an American mockumentary sitcom television series that
+          depicts the everyday work lives of office employees at the Scranton,
+          Pennsylvania, branch of the fictional Dunder Mifflin Paper Company. It
+          aired on NBC from March 24, 2005, to May 16, 2013, spanning a total of
+          nine seasons.[1] Based on the 2001–2003 BBC series of the same name
+          created by Ricky Gervais and Stephen Merchant, it was adapted for
+          American television by Greg Daniels, a veteran writer for Saturday
+          Night Live, King of the Hill, and The Simpsons. It was co-produced by
+          Daniels's Deedle-Dee Productions and Reveille Productions (later Shine
+          America), in association with Universal Television. The original
+          executive producers were Daniels, Gervais, Merchant, Howard Klein, and
+          Ben Silverman, with numerous others being promoted in later seasons.
+        </p>
       </div>
       <a class="terrarium"
         ><figure>
@@ -82,12 +96,10 @@
           know some serious dedication has been poured into this.
         </p></a
       ><a class="item-with-image style" href="#">
-        <h4>Let's adopt, don't shop.</h4>
+        <h4>The iconic painting of Dunder Miflin Building</h4>
         <p>
-          Explore a style guide and various page layouts for a pet adoption site
-          in the<em>Style Guide</em> collection. Inspired by the<em
-            >Atomic Design</em
-          >
+          Thsi is where it all started!<em>Style Guide</em> collection. Inspired
+          by the<em>Atomic Design</em>
           principle, this 8-pen collection includes a 404 page concept, an admin
           dashboard and what a Twitter user calls a 'media card zen garden'.
           Each pen comes with five (yes, five) color themes, including the
@@ -105,10 +117,8 @@
         </p></a
       ><a class="menu" href="#">
         <figure>
-          <img
-            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-menu.jpg"
-          />
-          <figcaption>See the new and improved menu for Toasty!</figcaption>
+          <img src="../assets/the-office-building.jpg" />
+          <figcaption>By Pam Beesley</figcaption>
         </figure></a
       ><a class="social" href="#"
         ><img
@@ -121,7 +131,7 @@
           friendly reminder to practice social distancing. Oh, and wear a mask!
         </div></a
       >
-      <div class="item-with-image cssgrid-collection">
+      <!-- <div class="item-with-image cssgrid-collection">
         <a class="cssgrid-collection__image" href="#"
           ><img
             src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-co-grid.jpg"
@@ -155,7 +165,7 @@
             </p>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="sidebar">
         <h3 class="title--big">Hot this month</h3>
         <a class="codepen-item pie"
@@ -189,10 +199,7 @@
           </p></a
         ><a class="workout">
           <div class="workout__image">
-            <img
-              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-workout.jpg"
-              alt="Workout"
-            />
+            <img src="../assets/theoffice.jpeg" alt="Workout" />
           </div>
           <div class="workout__blurb">
             Always failing to keep track of your workouts?
@@ -254,6 +261,7 @@ a {
 .main__wrapper {
   max-width: 1135px;
   margin: auto;
+  padding-bottom: 10%;
 }
 
 h1 {
@@ -691,10 +699,11 @@ aside {
   margin: 3rem auto 0.2rem;
   &__image {
     padding: 2px;
+
     img {
       height: 16rem;
       object-fit: cover;
-      object-position: left;
+      object-position: center;
       border: none;
       @media (min-width: 1024px) {
         height: 25rem;

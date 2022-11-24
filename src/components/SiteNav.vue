@@ -36,13 +36,12 @@
             type="search"
             placeholder="Search Dunder Mifflin..."
             aria-label="Search"
-            @keyup.enter="searchFn"
+            @keyup.enter="search"
           />
           <button
             @click="searchFn"
             class="btn btn-outline-success"
             type="submit"
-
           >
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
@@ -65,18 +64,16 @@
               <span class="circle" aria-hidden="true">
                 <span class="icon arrow"></span>
               </span>
-              <router-link to="/sign-in" class="button-text">
-                logout</router-link
-              >
+              <div class="button-text">logout</div>
             </button>
           </div>
           <div v-else id="container">
             <button class="learn-more">
               <span class="circle" aria-hidden="true">
-                <span class="icon arrow"></span>
+                <span to="/sign-in" class="icon arrow"></span>
               </span>
-              <span class="button-text"
-                ><i class="fa-regular fa-user"></i> login</span
+              <router-link class="button-text" to="/sign-in"
+                ><i class="fa-regular fa-user"></i> login</router-link
               >
             </button>
           </div>
@@ -98,12 +95,9 @@ export default {
     },
     searchFn() {
       this.$emit("search", this.searchTxt);
-
     },
   },
-  mounted() {
-    
-  }
+  mounted() {},
 };
 </script>
 
@@ -162,14 +156,14 @@ export default {
 .cart-btn,
 .wishlist-btn {
   font-family: "Raleway", sans-serif;
-  color: white;
+  color: gray;
   text-decoration: none;
   padding: 5%;
 }
 .product-btn:hover,
 .cart-btn:hover,
 .wishlist-btn:hover {
-  color: hotpink;
+  color: white;
 }
 
 nav {
@@ -344,8 +338,8 @@ button.learn-more .button-text {
   text-transform: uppercase;
   text-decoration: none;
 }
-button.learn-more .button-text > i{
- padding: 3%;
+button.learn-more .button-text > i {
+  padding: 3%;
 }
 button:hover .circle {
   width: 100%;

@@ -142,10 +142,6 @@ export default {
       });
       return (this.sum = Math.floor(total));
     },
-    // del(idx){
-    //     this.shoppingList.delete(idx);
-    //     this.calTotal()
-    // },
     total(total) {
       this.sum = total;
     },
