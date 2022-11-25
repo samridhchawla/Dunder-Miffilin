@@ -14,19 +14,20 @@
             <h3 class="price">${{ item.price }}</h3>
           </div>
           <div class="all-btns">
-            <button class="wishlist-btn" @click="wishlistFn">
-              Add to wishlist
-            </button>
-            <button class="added" v-if="cartFlag">Added to cart</button>
-            <button class="cart-btn" v-else @click="cartAdd">
-              Add to cart
-            </button>
             <input
               class="amt-input"
               type="number"
               placeholder="Amount"
               v-model="itemAmount"
             />
+
+            <button class="added" v-if="cartFlag">Added to cart</button>
+            <button class="cart-btn" v-else @click="cartAdd">
+              Add to cart
+            </button>
+            <button class="wishlist-btn" @click="wishlistFn">
+              Add to wishlist
+            </button>
           </div>
         </aside>
       </article>
@@ -39,7 +40,7 @@ export default {
   props: ["item", "idx"],
   data() {
     return {
-      itemAmount: 0,
+      itemAmount: "",
       cartFlag: false,
     };
   },
@@ -190,6 +191,21 @@ aside {
   border: 0px solid transparent;
 }
 .amt-input::placeholder {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+:-moz-placeholder {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+::-webkit-input-placeholder {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+input[type="number"] {
   text-align: center;
 }
 </style>

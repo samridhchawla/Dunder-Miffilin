@@ -75,11 +75,11 @@
           </p>
         </div></a
       ><a class="hogwarts" href="#">
-        <div class="hogwarts__title">50% Off Hogwarts Express tickets</div>
+        <div class="hogwarts__title">50% Off The office tickets</div>
         <div class="hogwarts__image">
           <span>Limited time offer</span
           ><img
-            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/showcase-hogwarts.svg"
+            src="../assets/the-office-experience.9618adcd.png"
           /></div></a
       ><a class="item-with-image pasta with-border" href="#">
         <h4>A pasta menu</h4>
@@ -534,13 +534,14 @@ aside {
     position: relative;
 
     img {
-      transform: rotate(60deg);
-      height: 150%;
+      transform: rotate(90deg);
+      height: 120%;
       position: absolute;
+      object-fit: contain;
       border: 0;
       width: 250%;
-      left: -70%;
-      bottom: -35%;
+      left: -75%;
+      bottom: -5%;
       @media (min-width: 700px) and (max-width: 1024px) {
         bottom: -20%;
       }
